@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blank Website</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: pink;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .centered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .btn-next, .btn-back {
+      margin-top: 20px;
+      background-color: pink;
+      color: black;
+      border: 1px solid black;
+    }
+    .gif-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div id="page1" class="container">
+  <div class="centered">
+    <h2>VALENTINES :3</h2>
+    <div id="image1"></div> <!-- Spot for an image -->
+    <p>Happy valentines day my love!!!! Apasa pe "next" :></p>
+    <img src="mashdown.png" alt="Your Image" width="200" style="display: block; margin: 0 auto;">
+    <button class="btn btn-primary btn-next">Next</button>
+  </div>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="container" style="display: none;">
+  <div class="centered">
+    <h2 style="text-align: center;">Pozele mele favorite cu tine, de cand am fost sa vedem lebedele si poza care mi-ai trimis-o cu tine cand aveai parul prins, nu ai nici o idee cat de fericit ma faci. Esti minunata :></h2>
+    <img src="numba1.png" alt="Your Image" width="1000" style="display: block; margin: 20px auto;"> <!-- Adjusted image size -->
+    <div id="image2"></div> <!-- Spot for image 1 -->
+    <div id="image3"></div> <!-- Spot for image 2 -->
+    <p>so pretty :3</p>
+    <button class="btn btn-primary btn-next">Next</button>
+    <button class="btn btn-primary btn-back">Go Back</button>
+  </div>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="container" style="display: none;">
+  <div class="centered">
+    <h2>Un mesaj pentru tine, my love:</h2>
+    <img src="pink.png" alt="Your Image" width="1000" style="display: block; margin: 20px auto;">
+    <div id="gif"></div> <!-- Spot for a gif -->
+    <button class="btn btn-primary btn-back">Go Back</button>
+  </div>
+</div>
+
+<div id="gifContainer" class="gif-container" style="display: none;">
+  <img src="ily.gif" alt="Your GIF" width="200">
+</div>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Custom JS -->
+<script>
+  const nextPage = () => {
+    const currentPage = document.querySelector('.container:not([style*="display: none"])');
+    currentPage.style.display = 'none';
+    const nextPage = currentPage.nextElementSibling;
+    nextPage.style.display = 'block';
+
+    if (nextPage.id === 'page3') {
+      document.getElementById('gifContainer').style.display = 'block';
+    }
+  };
+
+  const goBack = () => {
+    const currentPage = document.querySelector('.container:not([style*="display: none"])');
+    currentPage.style.display = 'none';
+    const previousPage = currentPage.previousElementSibling;
+    previousPage.style.display = 'block';
+
+    if (previousPage.id !== 'page3') {
+      document.getElementById('gifContainer').style.display = 'none';
+    }
+  };
+
+  document.querySelectorAll('.btn-next').forEach(btn => {
+    btn.addEventListener('click', nextPage);
+  });
+
+  document.querySelectorAll('.btn-back').forEach(btn => {
+    btn.addEventListener('click', goBack);
+  });
+</script>
+
+</body>
+</html>
